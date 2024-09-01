@@ -1,50 +1,39 @@
-; ---------------------------------------------------------------------------
-; Sprite mappings - Moto Bug enemy (GHZ)
-; ---------------------------------------------------------------------------
-Map_Moto_internal:	mappingsTable
-	mappingsTableEntry.w	.moto1
-	mappingsTableEntry.w	.moto2
-	mappingsTableEntry.w	.moto3
-	mappingsTableEntry.w	.smoke1
-	mappingsTableEntry.w	.smoke2
-	mappingsTableEntry.w	.smoke3
-	mappingsTableEntry.w	.blank
+Map_6ec2: mappingsTable
+	mappingsTableEntry.w	Map_6ec2_0
+	mappingsTableEntry.w	Map_6ec2_1
+	mappingsTableEntry.w	Map_6ec2_2
+	mappingsTableEntry.w	Map_6ec2_3
+	mappingsTableEntry.w	Map_6ec2_4
+	mappingsTableEntry.w	Map_6ec2_5
+	mappingsTableEntry.w	Map_6ec2_6
+	mappingsTableEntry.w	Map_6ec2_7
 
-.moto1:	spriteHeader
-	spritePiece	-$14, -$10, 4, 2, 0, 0, 0, 0, 0
-	spritePiece	-$14, 0, 4, 1, 8, 0, 0, 0, 0
-	spritePiece	$C, -8, 1, 2, $C, 0, 0, 0, 0
-	spritePiece	-$C, 8, 3, 1, $E, 0, 0, 0, 0
-.moto1_End
+Map_6ec2_0:	spriteHeader
+ spritePiece -$18, -$10, 4, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$10, 2, 4, $10, 0, 0, 0, 0
+Map_6ec2_0_End
 
-.moto2:	spriteHeader
-	spritePiece	-$14, -$F, 4, 2, 0, 0, 0, 0, 0
-	spritePiece	-$14, 1, 4, 1, 8, 0, 0, 0, 0
-	spritePiece	$C, -7, 1, 2, $C, 0, 0, 0, 0
-	spritePiece	-$C, 9, 3, 1, $11, 0, 0, 0, 0
-.moto2_End
+Map_6ec2_1:	spriteHeader
+Map_6ec2_1_End
 
-.moto3:	spriteHeader
-	spritePiece	-$14, -$10, 4, 2, 0, 0, 0, 0, 0
-	spritePiece	-$14, 0, 4, 1, $14, 0, 0, 0, 0
-	spritePiece	$C, -8, 1, 2, $C, 0, 0, 0, 0
-	spritePiece	-$14, 8, 2, 1, $18, 0, 0, 0, 0
-	spritePiece	-4, 8, 2, 1, $12, 0, 0, 0, 0
-.moto3_End
+Map_6ec2_2:	spriteHeader
+ spritePiece -$18, -$F, 4, 4, 0, 0, 0, 0, 0
+ spritePiece 8, -$F, 2, 4, $10, 0, 0, 0, 0
+Map_6ec2_2_End
 
-.smoke1:	spriteHeader
-	spritePiece	$10, -6, 1, 1, $1A, 0, 0, 0, 0
-.smoke1_End
+Map_6ec2_3:	spriteHeader
+Map_6ec2_3_End
 
-.smoke2:	spriteHeader
-	spritePiece	$10, -6, 1, 1, $1B, 0, 0, 0, 0
-.smoke2_End
+Map_6ec2_4:	spriteHeader
+Map_6ec2_4_End
 
-.smoke3:	spriteHeader
-	spritePiece	$10, -6, 1, 1, $1C, 0, 0, 0, 0
-.smoke3_End
+Map_6ec2_5:	spriteHeader
+Map_6ec2_5_End
 
-.blank:	spriteHeader
-.blank_End
+Map_6ec2_6:	spriteHeader
+Map_6ec2_6_End
+
+Map_6ec2_7:	spriteHeader
+Map_6ec2_7_End
 
 	even
