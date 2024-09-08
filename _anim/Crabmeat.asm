@@ -8,7 +8,7 @@ Ani_Crab:	dc.w .stand-Ani_Crab, .standslope-Ani_Crab, .standsloperev-Ani_Crab
 		even
 .standslope:	dc.b $F, 0, afEnd
 		even
-.standsloperev:	dc.b $F, $22, afEnd
+.standsloperev:	dc.b $F, 0, afEnd
 		even
 .walk:		dc.b $F, 1, 2, 0, afEnd
 		even
