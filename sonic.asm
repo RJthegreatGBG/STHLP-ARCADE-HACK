@@ -349,6 +349,7 @@ GameInit:
 		move.l	d7,(a6)+
 		dbf	d6,.clearRAM	; clear RAM ($0000-$FDFF)
 
+		bsr.w	InitDMAQueue; ++ NEW LINE: initiates the ultra DMA queue
 		bsr.w	VDPSetupGame
 		bsr.w	DACDriverLoad
 		bsr.w	JoypadInit
@@ -386,6 +387,7 @@ ptr_GM_Credits:	bra.w	GM_Credits	; Credits ($1C)
 ; ===========================================================================
 
 CheckSumError:
+		bsr.w	InitDMAQueue; ++ NEW LINE: initiates the ultra DMA queue
 		bsr.w	VDPSetupGame
 		move.l	#$C0000000,(vdp_control_port).l ; set VDP to CRAM write
 		moveq	#$3F,d7
@@ -700,13 +702,14 @@ VBla_08:
 
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		writeVRAM	v_spritetablebuffer,vram_sprites
-		tst.b	(f_sonframechg).w ; has Sonic's sprite changed?
-		beq.s	.nochg		; if not, branch
-
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size ; load new Sonic gfx
-		move.b	#0,(f_sonframechg).w
-
-.nochg:
+		bsr.w	Process_DMA_Queue
+;		tst.b	(f_sonframechg).w ; has Sonic's sprite changed?
+;		beq.s	.nochg		; if not, branch
+;
+;		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size ; load new Sonic gfx
+;		move.b	#0,(f_sonframechg).w
+;
+;.nochg:
 		startZ80
 		movem.l	(v_screenposx).w,d0-d7
 		movem.l	d0-d7,(v_screenposx_dup).w
@@ -749,13 +752,14 @@ VBla_0A:
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		startZ80
 		bsr.w	PalCycle_SS
-		tst.b	(f_sonframechg).w ; has Sonic's sprite changed?
-		beq.s	.nochg		; if not, branch
-
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size ; load new Sonic gfx
-		move.b	#0,(f_sonframechg).w
-
-.nochg:
+		bsr.w	Process_DMA_Queue
+;		tst.b	(f_sonframechg).w ; has Sonic's sprite changed?
+;		beq.s	.nochg		; if not, branch
+;
+;		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size ; load new Sonic gfx
+;		move.b	#0,(f_sonframechg).w
+;
+;.nochg:
 		tst.w	(v_demolength).w	; is there time left on the demo?
 		beq.w	.end	; if not, return
 		subq.w	#1,(v_demolength).w	; subtract 1 from time left in demo
@@ -781,12 +785,13 @@ VBla_0C:
 		move.w	(v_hbla_hreg).w,(a5)
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		writeVRAM	v_spritetablebuffer,vram_sprites
-		tst.b	(f_sonframechg).w
-		beq.s	.nochg
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size
-		move.b	#0,(f_sonframechg).w
-
-.nochg:
+		bsr.w	Process_DMA_Queue
+;		tst.b	(f_sonframechg).w
+;		beq.s	.nochg
+;		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size
+;		move.b	#0,(f_sonframechg).w
+;
+;.nochg:
 		startZ80
 		movem.l	(v_screenposx).w,d0-d7
 		movem.l	d0-d7,(v_screenposx_dup).w
@@ -820,12 +825,13 @@ VBla_16:
 		writeVRAM	v_spritetablebuffer,vram_sprites
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		startZ80
-		tst.b	(f_sonframechg).w
-		beq.s	.nochg
-		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size
-		move.b	#0,(f_sonframechg).w
-
-.nochg:
+		bsr.w	Process_DMA_Queue
+;		tst.b	(f_sonframechg).w
+;		beq.s	.nochg
+;		writeVRAM	v_sgfx_buffer,ArtTile_Sonic*tile_size
+;		move.b	#0,(f_sonframechg).w
+;
+;.nochg:
 		tst.w	(v_demolength).w
 		beq.w	.end
 		subq.w	#1,(v_demolength).w
@@ -1112,7 +1118,9 @@ Tilemap_Cell:
 		dbf	d2,Tilemap_Line	; next line
 		rts	
 ; End of function TilemapToVRAM
-
+; the ultra cool extremely awesome
+; DIRECT MEMORY ACCESS QUEUE
+		include	"_inc/DMA-Queue-AS.asm"
 		include	"_inc/Nemesis Decompression.asm"
 
 
@@ -2798,6 +2806,7 @@ Level_ClrRam:
 		move.w	#$8720,(a6)		; set background colour (line 3; colour 0)
 		move.w	#$8A00+223,(v_hbla_hreg).w ; set palette change position (for water)
 		move.w	(v_hbla_hreg).w,(a6)
+		ResetDMAQueue; ++ NEW LINE it resets the dma queue
 		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?
 		bne.s	Level_LoadPal	; if not, branch
 
@@ -2817,6 +2826,7 @@ Level_ClrRam:
 Level_LoadPal:
 		move.w	#30,(v_air).w
 		enable_ints
+
 		moveq	#palid_Sonic,d0
 		bsr.w	PalLoad	; load Sonic's palette
 		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?

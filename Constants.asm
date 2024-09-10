@@ -14,6 +14,7 @@ PSG_Sample_Rate: equ Z80_Clock/16
 
 ; VDP addressses
 vdp_data_port:		equ $C00000
+VDP_control_port:   equ $C00004
 vdp_control_port:	equ $C00004
 vdp_counter:		equ $C00008
 

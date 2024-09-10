@@ -37,8 +37,11 @@ FindNearestTile:
 		lsr.w	#3,d0
 		andi.w	#$1E,d0
 		add.w	d0,d1
+		movea.l	d1,a1
+		rts
 
-.blanktile:
+.blanktile:;they should add this to FixBugs smh
+		moveq	#0,d1
 		movea.l	d1,a1
 		rts	
 ; ===========================================================================
