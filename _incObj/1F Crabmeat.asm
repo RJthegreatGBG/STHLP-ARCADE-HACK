@@ -75,7 +75,7 @@ Crab_Action:	; Routine 2
 		bsr.w	Crab_SetAni
 		addq.b	#3,d0
 		move.b	d0,obAnim(a0)
-		bchg	#0,obStatus(a0)
+		bchg	d0,obStatus(a0)
 		bne.s	.noflip
 		neg.w	obVelX(a0)	; change direction
 
