@@ -1,38 +1,35 @@
-; ---------------------------------------------------------------------------
-; Sprite mappings - signpost
-; ---------------------------------------------------------------------------
-Map_Sign_internal:	mappingsTable
-	mappingsTableEntry.w	.eggman
-	mappingsTableEntry.w	.spin1
-	mappingsTableEntry.w	.spin2
-	mappingsTableEntry.w	.spin3
-	mappingsTableEntry.w	.sonic
+Map_a1d8: mappingsTable
+	mappingsTableEntry.w	Map_a1d8_0
+	mappingsTableEntry.w	Map_a1d8_1
+	mappingsTableEntry.w	Map_a1d8_2
+	mappingsTableEntry.w	Map_a1d8_3
+	mappingsTableEntry.w	Map_a1d8_4
 
-.eggman:	spriteHeader
-	spritePiece	-$18, -$10, 3, 4, 0, 0, 0, 0, 0
-	spritePiece	0, -$10, 3, 4, 0, 1, 0, 0, 0
-	spritePiece	-4, $10, 1, 2, $38, 0, 0, 0, 0
-.eggman_End
+Map_a1d8_0:	spriteHeader
+ spritePiece -$18, -$10, 3, 4, 0, 0, 0, 0, 0
+ spritePiece 0, -$10, 3, 4, 0, 1, 0, 0, 0
+ spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
+Map_a1d8_0_End
 
-.spin1:	spriteHeader
-	spritePiece	-$10, -$10, 4, 4, $C, 0, 0, 0, 0
-	spritePiece	-4, $10, 1, 2, $38, 0, 0, 0, 0
-.spin1_End
+Map_a1d8_1:	spriteHeader
+ spritePiece -$10, -$10, 4, 4, $C, 0, 0, 0, 0
+ spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
+Map_a1d8_1_End
 
-.spin2:	spriteHeader
-	spritePiece	-4, -$10, 1, 4, $1C, 0, 0, 0, 0
-	spritePiece	-4, $10, 1, 2, $38, 1, 0, 0, 0
-.spin2_End
+Map_a1d8_2:	spriteHeader
+ spritePiece -4, -$10, 1, 4, $1C, 0, 0, 0, 0
+ spritePiece -4, $10, 1, 2, $38, 1, 0, 0, 0
+Map_a1d8_2_End
 
-.spin3:	spriteHeader
-	spritePiece	-$10, -$10, 4, 4, $C, 1, 0, 0, 0
-	spritePiece	-4, $10, 1, 2, $38, 1, 0, 0, 0
-.spin3_End
+Map_a1d8_3:	spriteHeader
+ spritePiece -$10, -$10, 4, 4, $C, 1, 0, 0, 0
+ spritePiece -4, $10, 1, 2, $38, 1, 0, 0, 0
+Map_a1d8_3_End
 
-.sonic:	spriteHeader
-	spritePiece	-$18, -$10, 3, 4, $20, 0, 0, 0, 0
-	spritePiece	0, -$10, 3, 4, $2C, 0, 0, 0, 0
-	spritePiece	-4, $10, 1, 2, $38, 0, 0, 0, 0
-.sonic_End
+Map_a1d8_4:	spriteHeader
+ spritePiece -$18, -$10, 3, 4, $20, 0, 0, 0, 0
+ spritePiece 0, -$10, 3, 4, $2C, 0, 0, 0, 0
+ spritePiece -4, $10, 1, 2, $38, 0, 0, 0, 0
+Map_a1d8_4_End
 
 	even
